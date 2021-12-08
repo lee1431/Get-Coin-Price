@@ -1,0 +1,61 @@
+html {
+  font-size: 10px;
+  padding: 20px 0 0 20px;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.coin-form {
+  width: 320px;
+  height: 70px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.coin-form #coin-list,
+.coin-form #coin-price {
+  height: 30px;
+  border: 1px solid #ccc;
+  background: white;
+  border-radius: 5px;
+  color: #000;
+  outline: none;
+}
+
+.coin-form #alarm-btn {
+  height: 30px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  color: #000;
+  background: #fff;
+  cursor: pointer;
+}
+
+/*알림 리스트*/
+#alarm-list {
+  width: 320px;
+  padding: 0 20px 0 20px;
+  box-sizing: border-box;
+  font-size: 1.5rem;
+}
+
+#alarm-list li {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+#alarm-list button {
+  background: #fff;
+  border-style: none;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}

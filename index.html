@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--reset-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css">
+
+    <!--css-->
+    <link rel="stylesheet" href="./style.css">
+
+    <!--Java Script-->
+    <script src="./app.js" defer></script>
+
+    <!--font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">    
+
+    <title>Get Coin Price</title>
+</head>
+<body>
+    <h1>Get Coin Price</h1>
+
+    <form class="coin-form">
+        <select name="coin-list" id="coin-list">
+            <option value="코인명">코인명</option>
+            <option value="리플">리플</option>
+            <option value="비트코인">비트코인</option>
+            <option value="에이다">에이다</option>
+            <option value="도지코인">도지코인</option>
+        </select>
+        <input id="coin-price" type="number" max="100000000" required>
+        <input id="alarm-btn" type="submit" value="설정">
+    </form>
+
+    <ul id="alarm-list">
+        <li>
+            <!--<span>코인명</span>
+            <span>코인가격</span>
+            <button>삭제</button>-->
+        </li>
+    </ul>
+
+</body>
+</html>
