@@ -1,47 +1,67 @@
-const coinForm = document.querySelector(".coin-form");
-const coinList = document.querySelector("#coin-list");
-const coinInput = document.querySelector("#coin-price");
-const addAlarm = document.querySelector("#alarm-btn");
-const alarmList = document.querySelector("#alarm-list");
+//알림 부분
+const getCoinForm = document.querySelector("#get-coin");
+const getCoinName = document.querySelector("#get-coin-name");
+const alarmSetPrice = document.querySelector("#alarm-set-price");
+const coinAlarmList = document.querySelector("#coin-alarm-list");
 
-//01. 초기 준비
-function handleCoin(e){
-    e.preventDefault(); //텍스트 양식 새로고침 방지 입니다.
-    const coinListValue = coinList.value;
-    const coinInputValue = coinInput.value;
-    coinInput.value = ""; //설정 버튼을 클릭시에 텍스트 양식을 비웁니다.
-    drawingCoinList(coinListValue , coinInputValue); //02. 입력 부분 함수 불러옴
+//코인 목록 부분
+const coinNameSection = document.querySelector(".coin-name");
+const coinOpenPrice = document.querySelector(".open-price");
+const coinClosePrice = document.querySelector(".close-price");
+const alarmSetBtn = document.querySelector(".alarm-set-btn");
+
+//목록에서 코인 정보 가져오기
+function getCoinInfoSend(e){
+    const getCoinInfoName = e.target.parentElement.children[0].innerText;
+    getCoinName.value = getCoinInfoName;
 }
+alarmSetBtn.addEventListener("click" , getCoinInfoSend);
 
-coinForm.addEventListener("submit" , handleCoin);
+//준비단계
+function getCoinPriceReady(e){
+    e.preventDefault()
+    const getCoinNameValue = getCoinName.value;
+    const alarmSetPriceValue = alarmSetPrice.value;
+    alarmSetPrice.value = "";
+    getCoinPriceMakeList(getCoinNameValue , alarmSetPriceValue)
+}
+getCoinForm.addEventListener("submit" , getCoinPriceReady);
 
-//02. 입력
-function drawingCoinList(coinListValue , coinInputValue){
+//알림추가
+function getCoinPriceMakeList(getCoinNameValue , alarmSetPriceValue){
     const li = document.createElement("li");
-    const firstSpan = document.createElement("span");
-    const secondSpan = document.createElement("span");
+    const nameSpan = document.createElement("span");
+    const priceSpan = document.createElement("span");
     const deleteBtn = document.createElement("button");
-    deleteBtn.addEventListener("click" , deleteAlarm);
+    deleteBtn.addEventListener("click" , getCoinPriceDeleteList);
+    nameSpan.innerText = getCoinNameValue;
+    priceSpan.innerText = alarmSetPriceValue;
     deleteBtn.innerText = "삭제";
-    firstSpan.innerText = coinListValue;
-    secondSpan.innerText = coinInputValue;
-    li.appendChild(firstSpan);
-    li.appendChild(secondSpan);
+    li.appendChild(nameSpan);
+    li.appendChild(priceSpan);
     li.appendChild(deleteBtn);
-    alarmList.appendChild(li);
-}
-
-//03. 삭제
-function deleteAlarm(e){
-    const deleteLi = e.target.parentElement; //삭제하려는 요소가 어떤 li인지 찾음
-    deleteLi.remove(); //li를 삭제함
-}
-
-//텍스트 양식에 숫자만 입력을 알림
-function textNumber(){
-    if(coinInput.value === number){
-        handleCoin(e)
-    }else {
-        alert("숫자만 입력해주세요");
+    coinAlarmList.appendChild(li);
+    if(priceSpan.innerText > coinClosePrice.innerText){
+        alert("지정가를 돌파했습니다.");
     }
 }
+
+//알림 삭제
+function getCoinPriceDeleteList(e){
+    const deleteInfo = e.target.parentElement;
+    deleteInfo.remove();
+}
+
+//빗썸 api
+fetch("https://api.bithumb.com/public/ticker/ALL_KRW")
+    .then(function(coinData){
+        return coinData.json();
+    })
+    .then(function(coinData){
+        const openBTC = coinData.data.BTC.opening_price;
+        const closeBTC = coinData.data.BTC.closing_price;
+        coinOpenPrice.innerText = openBTC;
+        coinClosePrice.innerText = closeBTC;
+
+    });
+

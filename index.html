@@ -13,6 +13,8 @@
 
     <!--Java Script-->
     <script src="./app.js" defer></script>
+    
+    
 
     <!--font-->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,27 +24,46 @@
     <title>Get Coin Price</title>
 </head>
 <body>
-    <h1>Get Coin Price</h1>
+    <div class="wrap">
+        <nav>
+            <h1>Get Coin Price</h1>
+        </nav>
+        <section class="main">
+            <article class="coin-price-section">
+                <ul>
+                    <li>
+                        <div>코인</div>
+                        <div>시가</div>
+                        <div>종가</div>
+                        <div>알림설정</div>
+                    </li>
+                    <li>
+                        <form>
+                            <div class="coin-name" >비트코인</div>
+                            <div class="open-price">111</div>
+                            <div class="close-price">111</div>
+                            <input class ="alarm-set-btn" type="button" value="알 림">
+                        </form>
+                    </li>
+                </ul>
+            </article>
 
-    <form class="coin-form">
-        <select name="coin-list" id="coin-list">
-            <option value="코인명">코인명</option>
-            <option value="리플">리플</option>
-            <option value="비트코인">비트코인</option>
-            <option value="에이다">에이다</option>
-            <option value="도지코인">도지코인</option>
-        </select>
-        <input id="coin-price" type="number" max="100000000" required>
-        <input id="alarm-btn" type="submit" value="설정">
-    </form>
-
-    <ul id="alarm-list">
-        <li>
-            <!--<span>코인명</span>
-            <span>코인가격</span>
-            <button>삭제</button>-->
-        </li>
-    </ul>
+            <aside class="coin-alarm-section">
+                <form id="get-coin">
+                    <input id="get-coin-name" type="text" maxlength="12" value="" disabled>
+                    <input id="alarm-set-price" type="number" max="100000000" value="" required>
+                    <input type="submit" value="설정">
+                </form>
+                <ul id="coin-alarm-list">
+                    <!--<li>
+                        <span>코인명</span>
+                        <span>가격</span>
+                        <button>삭제</button>
+                    </li>-->
+                </ul>
+            </aside>
+        </section>
+    </div>
 
 </body>
 </html>
